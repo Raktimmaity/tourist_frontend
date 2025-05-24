@@ -19,7 +19,7 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import Partners from './components/Partners';
 import Filghts from './pages/Flights';
-import FAQ from './components/Faq';
+import FAQ from './components/FAQ';
 import FlightsPage from './pages/FlightsPage';
 import Hotels from './pages/Hotels';
 import Homestays from './pages/Homestays';

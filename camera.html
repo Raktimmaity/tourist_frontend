@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AR Object Detector</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body class="bg-gray-900 text-white">
+
+    <div class="w-full min-h-screen flex flex-col justify-center items-center bg-gray-900 p-3 space-y-6">
+        <!-- Camera Container -->
+        <div class="relative w-1/3 h-[60vh]">
+          <!-- Camera Feed -->
+          <video id="video" autoplay muted playsinline class="w-full h-full object-cover rounded-lg shadow-lg"></video>
+      
+          <!-- Overlay Box centered at bottom -->
+          <div id="overlay" class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/60 text-white text-lg px-4 py-3 rounded-lg shadow-md backdrop-blur-sm">
+            Loading...
+          </div>
+        </div>
+      
+        <!-- Back to Home Button -->
+        <a href="/" class="mt-4 inline-block bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition duration-300">
+          ⬅ Back to Home
+        </a>
+      </div>
+      
+
+  <!-- TensorFlow & COCO-SSD -->
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd"></script>
+
+  <script>
+    let model;
+    const video = document.getElementById('video');
+    const overlay = document.getElementById('overlay');
+
+    // Load the COCO-SSD model
+    cocoSsd.load().then(loadedModel => {
+      model = loadedModel;
+      startCamera();
+    });
+
+    // Start the camera
+    function startCamera() {
+      navigator.mediaDevices.getUserMedia({ video: true })
+        .then(stream => {
+          video.srcObject = stream;
+          video.onloadedmetadata = () => detectFrame();
+        });
+    }
+
+    // Run detection in loop
+    function detectFrame() {
+      model.detect(video).then(predictions => {
+        if (predictions.length > 0) {
+          const object = predictions[0];
+          const label = object.class;
+
+          overlay.innerText = `Object: ${label}`;
+          speakText(`This looks like a ${label}`);
+        }
+
+        requestAnimationFrame(detectFrame);
+      });
+    }
+
+    // Speak using browser's speech synthesis
+    function speakText(text) {
+      const utterance = new SpeechSynthesisUtterance(text);
+      utterance.lang = 'en-US';
+      window.speechSynthesis.cancel(); // stop current speaking
+      window.speechSynthesis.speak(utterance);
+    }
+  </script>
+</body>
+</html>

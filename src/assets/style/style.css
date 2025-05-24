@@ -1,0 +1,33 @@
+@keyframes sparkle {
+    0% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+    50% {
+      transform: translateY(-10px);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(0);
+      opacity: 0.5;
+    }
+  }
+  
+  .sparkle-animation {
+    position: relative;
+    overflow: hidden;
+    animation: sparkle 1.5s ease-in-out infinite;
+  }
+  
+  .sparkle-animation::before {
+    content: "";
+    position: absolute;
+    top: -50%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.6);
+    animation: sparkle 1.5s linear infinite;
+    z-index: 1;
+  }
+  

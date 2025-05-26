@@ -7,7 +7,7 @@ import "react-toastify/dist/ReactToastify.css";
 import avator from "../assets/img/avator.jpg";
 
 const AddTouristPlacePage = () => {
-  const URL = "http://localhost:5000";
+  const URL = "https://tourist-backend-5qoo.onrender.com";
   const stored = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   //   const navigate = useNavigate();

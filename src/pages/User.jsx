@@ -21,7 +21,7 @@ import axios from "axios";
 import * as XLSX from "xlsx";
 
 const UserPage = () => {
-  const URL = "https://tourist-frontend.onrender.com";
+  const URL = "https://tourist-backend-5qoo.onrender.com";
   const stored = JSON.parse(localStorage.getItem("user"));
   const userId = stored?.user?.id;
   const userEmail = stored?.user?.email;

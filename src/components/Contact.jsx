@@ -5,6 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Contact() {
+  const URL = "http://localhost:5000";
   const [formData, setFormdata] = useState({
     name: "",
     email: "",
@@ -25,7 +26,7 @@ export default function Contact() {
 
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/contact",
+        `${URL}/api/contact`,
         formData
       ); // Use full URL during dev
       console.log("Response:", res.data);

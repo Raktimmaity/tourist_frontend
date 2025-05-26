@@ -17,7 +17,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const ProfilePage = () => {
-  const URL = "http://localhost:5000";
+  const URL = "https://tourist-frontend.onrender.com";
   const stored = JSON.parse(localStorage.getItem("user"));
   const navigate = useNavigate();
   const location = useLocation();

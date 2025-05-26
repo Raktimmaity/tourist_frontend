@@ -11,7 +11,7 @@ const formatTime = (sec) => {
 };
 
 const VirtualTourPage = () => {
-  const URL = "http://localhost:5000";
+  const URL = "https://tourist-frontend.onrender.com";
   const location = useLocation();
   const navigate = useNavigate();
 

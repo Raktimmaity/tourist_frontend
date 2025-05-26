@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function ResetPassword() {
+  const URL = "https://tourist-frontend.onrender.com";
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -21,7 +22,7 @@ export default function ResetPassword() {
 
   setLoading(true);
   try {
-    const response = await fetch("http://localhost:5000/api/users/reset-password", {
+    const response = await fetch(`${URL}/api/users/reset-password`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

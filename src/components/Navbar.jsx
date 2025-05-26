@@ -10,7 +10,7 @@ import { LayoutDashboard, User, LogOut } from "lucide-react";
 import CustomDropdown from "./CustomDropdown";
 
 export default function Navbar() {
-  const URL = "http://localhost:5000";
+  const URL = "https://tourist-backend-5qoo.onrender.com";
   const stored = JSON.parse(localStorage.getItem("user"));
   const userName = stored?.user?.name;
   const [userData, setUserData] = useState(stored?.user || null);

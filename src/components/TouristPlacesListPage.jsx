@@ -25,7 +25,7 @@ import {
 } from "lucide-react";
 
 const HotelList = () => {
-  const URL = "http://localhost:5000";
+  const URL = "https://tourist-frontend.onrender.com";
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);

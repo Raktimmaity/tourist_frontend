@@ -18,7 +18,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 export default function ContactMessages() {
-  const URL = "https://tourist-frontend.onrender.com";
+  const URL = "https://tourist-backend-5qoo.onrender.com";
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(true);
   const stored = JSON.parse(localStorage.getItem("user"));

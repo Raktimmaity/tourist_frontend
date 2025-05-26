@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 
 export default function ResetPassword() {
-  const URL = "https://tourist-frontend.onrender.com";
+  const URL = "https://tourist-backend-5qoo.onrender.com";
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");

@@ -33,7 +33,7 @@ import {
 import axios from "axios";
 
 const UserDashboard = () => {
-  const URL = "https://tourist-frontend.onrender.com";
+  const URL = "https://tourist-backend-5qoo.onrender.com";
   const stored = JSON.parse(localStorage.getItem("user"));
   // const stored = JSON.parse(localStorage.getItem("user"));
   const userData = stored?.user || null;

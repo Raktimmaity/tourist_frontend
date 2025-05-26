@@ -5,7 +5,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Contact() {
-  const URL = "http://localhost:5000";
+  const URL = "https://tourist-frontend.onrender.com";
   const [formData, setFormdata] = useState({
     name: "",
     email: "",

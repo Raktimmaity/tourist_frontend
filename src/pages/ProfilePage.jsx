@@ -309,7 +309,7 @@ const ProfilePage = () => {
             <span
               className={`inline-block px-4 py-1 rounded-full text-sm font-medium ${
                 userData.role === "admin"
-                  ? "bg-gradient-to-r from-purple-500 to-pink-500"
+                  ? "bg-gradient-to-r from-purple-500 to-pink-500 text-white"
                   : userData.role === "restaurant"
                   ? "bg-purple-100 text-purple-600"
                   : userData.role === "hotel"

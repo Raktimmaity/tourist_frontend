@@ -6,7 +6,7 @@ import parisImage from "../assets/img/paris.jpg";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Tours() {
-  const URL = "http://localhost:5000";
+  const URL = "ttps://tourist-backend-5qoo.onrender.com";
   const [filterCity, setFilterCity] = useState("");
   const [dateFilter, setDateFilter] = useState("all");
   const [selectedDate, setSelectedDate] = useState("");

@@ -6,7 +6,7 @@ import parisImage from "../assets/img/paris.jpg";
 import "react-toastify/dist/ReactToastify.css";
 
 export default function Tours() {
-  const URL = "https://tourist-backend-5qoo.onrender.com";
+  const URL = "http://localhost:5000";
   const [filterCity, setFilterCity] = useState("");
   const [dateFilter, setDateFilter] = useState("all");
   const [selectedDate, setSelectedDate] = useState("");
@@ -423,66 +423,88 @@ export default function Tours() {
 
         {/* Tour Cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredPlaces.map((place) => (
-            <div
-              key={place._id}
-              className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:border-indigo-500 transition duration-300"
-            >
-              {/* Status Tag */}
-              <div className="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
-                {place.status}
-              </div>
+          {filteredPlaces
+            .slice()
+            .sort((a, b) => new Date(b.date) - new Date(a.date))
+            .map((place) => {
+              const isExpired = new Date(place.date) < new Date();
 
-              <img
-                src={place.imageUrl ? place.imageUrl : parisImage}
-                alt={place.placeName}
-                className="w-full h-48 object-cover"
-              />
-
-              <div className="p-6">
-                <h2 className="text-2xl font-bold text-indigo-700">
-                  {place.placeName}
-                </h2>
-                <p className="mt-2 text-gray-600"> <strong> Location: </strong> {place.location}</p>
-                <p className="mt-2 text-gray-600">
-                  <strong> Languages: </strong> {place.languagesSpoken.join(", ")}
-                </p>
-                <p className="mt-2 text-gray-600">
-                 <strong> Tour Time:</strong> {place.tourTime}
-                </p>
-                <p className="mt-2 text-gray-600"><strong> Duration: </strong>{place.duration}</p>
-                <p className="mt-2 text-gray-600"><strong>Price:</strong> ₹{place.price}</p>
-                <p className="mt-2 text-gray-600">
-                  <strong>Date:</strong>{" "}
-                  {new Date(place.date).toLocaleDateString("en-GB", {
-                    day: "2-digit",
-                    month: "long",
-                    year: "numeric",
-                  })}
-                </p>
-                {place.addedBy && (
-                  <p className="mt-2 text-gray-600">
-                   <strong> Tour Guide: </strong>{place.addedBy.name}
-                  </p>
-                )}
-                <p>
-                  <strong>Payment Mode: </strong>In Hand cash
-                </p>
-
-                <button
-                  onClick={() => handleBook(place)}
-                  disabled={booked === place._id}
-                  className={`mt-4 w-full py-2 rounded-lg font-semibold ${
-                    booked === place._id
-                      ? "bg-gray-400 text-white cursor-not-allowed"
-                      : "bg-gradient-to-r from-indigo-600 to-teal-500 text-white hover:from-indigo-700 hover:to-teal-600"
-                  }`}
+              return (
+                <div
+                  key={place._id}
+                  className="relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl hover:border-indigo-500 transition duration-300"
                 >
-                  {booked === place._id ? "Booked" : "Pay & Book"}
-                </button>
-              </div>
-            </div>
-          ))}
+                  {/* Status Tag */}
+                  <div className="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow">
+                    # {place.status}
+                  </div>
+
+                  <img
+                    src={place.imageUrl ? place.imageUrl : parisImage}
+                    alt={place.placeName}
+                    className={`w-full h-48 object-cover transition duration-300 ${
+                      isExpired ? "grayscale" : ""
+                    }`}
+                  />
+
+                  <div className="p-6">
+                    <h2 className="text-2xl font-bold text-indigo-700">
+                      {place.placeName}
+                    </h2>
+                    <p className="mt-2 text-gray-600">
+                      <strong>Location:</strong> {place.location}
+                    </p>
+                    <p className="mt-2 text-gray-600">
+                      <strong>Languages:</strong>{" "}
+                      {place.languagesSpoken.join(", ")}
+                    </p>
+                    <p className="mt-2 text-gray-600">
+                      <strong>Tour Time:</strong> {place.tourTime}
+                    </p>
+                    <p className="mt-2 text-gray-600">
+                      <strong>Duration:</strong> {place.duration}
+                    </p>
+                    <p className="mt-2 text-gray-600">
+                      <strong>Price:</strong> ₹{place.price}
+                    </p>
+                    <p className="mt-2 text-gray-600">
+                      <strong>Date:</strong>{" "}
+                      {new Date(place.date).toLocaleDateString("en-GB", {
+                        day: "2-digit",
+                        month: "long",
+                        year: "numeric",
+                      })}
+                    </p>
+                    {place.addedBy && (
+                      <p className="mt-2 text-gray-600">
+                        <strong>Tour Guide:</strong> {place.addedBy.name}
+                      </p>
+                    )}
+                    <p>
+                      <strong>Payment Mode:</strong> In Hand cash
+                    </p>
+
+                    <button
+                      onClick={() => handleBook(place)}
+                      disabled={booked === place._id || isExpired}
+                      className={`mt-4 w-full py-2 rounded-lg font-semibold ${
+                        isExpired
+                          ? "bg-gray-400 text-white cursor-not-allowed"
+                          : booked === place._id
+                          ? "bg-gray-400 text-white cursor-not-allowed"
+                          : "bg-gradient-to-r from-indigo-600 to-teal-500 text-white hover:from-indigo-700 hover:to-teal-600"
+                      }`}
+                    >
+                      {isExpired
+                        ? "Expired"
+                        : booked === place._id
+                        ? "Booked"
+                        : "Pay & Book"}
+                    </button>
+                  </div>
+                </div>
+              );
+            })}
         </div>
       </div>
 

@@ -476,16 +476,17 @@ export default function Navbar() {
                       to="/dashboard"
                       className="mt-2 bg-indigo-600 text-white rounded-full px-4 py-2 hover:bg-yellow-400 hover:text-gray-900 transition"
                     >
+                      <LayoutDashboard/>
                       Dashboard
                     </NavLink>
                     <NavLink to="/profile" className="mt-2 bg-indigo-600 text-white rounded-full px-4 py-2 hover:bg-yellow-400 hover:text-gray-900 transition">
-                      Profile
+                      <User/> Profile
                     </NavLink>
                     <button
                       onClick={handleLogout}
                       className="mt-2 bg-red-600 text-white rounded-full px-4 py-2 hover:bg-yellow-400 hover:text-gray-900 transition"
                     >
-                      Logout
+                     <LogOut/> Logout
                     </button>
                     </div>
                   </div>

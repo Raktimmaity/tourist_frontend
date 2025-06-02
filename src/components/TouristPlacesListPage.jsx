@@ -21,11 +21,11 @@ import {
   PlusCircle,
   Download,
   TicketPercent,
-  Send
+  Send,
 } from "lucide-react";
 
 const HotelList = () => {
-  const URL = "https://tourist-backend-5qoo.onrender.com";
+  const URL = "http://localhost:5000";
   const navigate = useNavigate();
   const location = useLocation();
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -72,14 +72,11 @@ const HotelList = () => {
       try {
         const token = localStorage.getItem("token"); // Assume token is stored in localStorage
         if (token) {
-          const response = await axios.get(
-            `${URL}/api/user/profile`,
-            {
-              headers: {
-                Authorization: `Bearer ${token}`,
-              },
-            }
-          );
+          const response = await axios.get(`${URL}/api/user/profile`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
           setUserData(response.data); // Assuming response contains user data
 
           // Print the user ID to the console
@@ -147,15 +144,18 @@ const HotelList = () => {
   // };
 
   const handleEditSave = () => {
+    const updatedPlace = {
+      ...editPlace,
+      tourDate: new Date(editPlace.tourDate), // Ensure date is in Date format
+    };
+
     axios
-      .put(`${URL}/api/places/${editPlace._id}`, editPlace)
+      .put(`${URL}/api/places/${editPlace._id}`, updatedPlace)
       .then((res) => {
-        // Update local state with new place details
         setTouristPlaces((prev) =>
           prev.map((place) => (place._id === editPlace._id ? res.data : place))
         );
-
-        setEditPlace(null); // Close the modal
+        setEditPlace(null);
         toast.success("Place updated successfully!");
       })
       .catch(() => {
@@ -210,10 +210,10 @@ const HotelList = () => {
             icon: <Hotel className="text-[16px]" />,
           },
           {
-                      label: "Contact",
-                      path: "/contact-messages",
-                      icon: <Send className="text-[16px]" />,
-                    }
+            label: "Contact",
+            path: "/contact-messages",
+            icon: <Send className="text-[16px]" />,
+          },
           // Add more admin-specific items here
         ]
       : []),
@@ -447,7 +447,14 @@ const HotelList = () => {
                         key={place._id}
                         className="border-b border-blue-100 hover:bg-blue-50/40"
                       >
-                        <td className="py-3 px-4"><img src={place.imageUrl} alt="{place.placeName}" width={90} className="border-1 border-blue-300 bg-blue-300 p-1 rounded-md" /></td>
+                        <td className="py-3 px-4">
+                          <img
+                            src={place.imageUrl}
+                            alt="{place.placeName}"
+                            width={90}
+                            className="border-1 border-blue-300 bg-blue-300 p-1 rounded-md"
+                          />
+                        </td>
                         <td className="py-3 px-4">{place.placeName}</td>
                         <td className="py-3 px-4">{place.location}</td>
                         {/* <td className="py-3 px-4">
@@ -659,11 +666,9 @@ const HotelList = () => {
                   <input
                     type="date"
                     className="p-2 rounded border border-blue-600 bg-white bg-opacity-40 text-black placeholder-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                    value={
-                      editPlace.tourDate ? editPlace.tourDate.split("T")[0] : ""
-                    }
+                    value={editPlace.date ? editPlace.date.split("T")[0] : ""}
                     onChange={(e) =>
-                      setEditPlace({ ...editPlace, tourDate: e.target.value })
+                      setEditPlace({ ...editPlace, date: e.target.value })
                     }
                     placeholder="Tour Date"
                   />

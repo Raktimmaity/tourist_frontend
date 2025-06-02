@@ -427,7 +427,7 @@ export default function Tours() {
             .slice()
             .sort((a, b) => new Date(b.date) - new Date(a.date))
             .map((place) => {
-              const isExpired = new Date(place.date) < new Date();
+              const isExpired = new Date(place.date).setHours(0,0,0,0) < new Date().setHours(0,0,0,0);
 
               return (
                 <div

@@ -440,7 +440,7 @@ export default function Tours() {
                   <div className="md:w-1/3 w-full h-64 md:h-auto relative">
                     {/* Status Tag - Top Left on Image */}
                     <div className="absolute top-2 left-2 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full shadow z-10">
-                      # {place.status}
+                      # {isExpired ? "expired" : place.status}
                     </div>
 
                     <img

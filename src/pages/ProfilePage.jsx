@@ -328,15 +328,15 @@ const ProfilePage = () => {
         </div>
 
         {/* Profile Form */}
-        <div className="w-full lg:w-2/3 bg-white/20 backdrop-blur-md rounded-2xl shadow-xl p-8 border border-blue-100">
+{/*         <div className="w-full lg:w-2/3 bg-white/20 backdrop-blur-md rounded-2xl shadow-xl p-8 border border-blue-100">
           <h1 className="text-3xl font-bold mb-6 text-blue-700">
             Update Profile
-          </h1>
+          </h1> */}
 
           {/* Tabs */}
-          <div className="flex gap-4 mb-6 border-b border-white/30">
+{/*           <div className="flex gap-4 mb-6 border-b border-white/30"> */}
             {/* {["basic", "password", "address", "payment"].map((tab) => ( */}
-            {["basic", "password"].map((tab) => (
+{/*             {["basic", "password"].map((tab) => (
               <button
                 key={tab}
                 onClick={() => setActiveTab(tab)}
@@ -346,7 +346,7 @@ const ProfilePage = () => {
                     : "border-transparent text-black hover:text-blue-600"
                 }`}
               >
-                {tab === "basic" ? "Basic Details" : "Change Password"}
+                {tab === "basic" ? "Basic Details" : "Change Password"} */}
                 {/* {tab === "basic"
                   ? "Basic Details"
                   : tab === "password"
@@ -354,12 +354,12 @@ const ProfilePage = () => {
                   : tab === "address"
                   ? "Address"
                   : "Payment Details"} */}
-              </button>
+{/*               </button>
             ))}
-          </div>
+          </div> */}
 
           {/* Form Fields */}
-          <div className="space-y-4 text-black">
+{/*           <div className="space-y-4 text-black">
             {activeTab === "basic" && (
               <>
                 <div>
@@ -401,7 +401,7 @@ const ProfilePage = () => {
                   placeholder="Enter new password"
                 />
               </div>
-            )}
+            )} */}
 
             {/* {activeTab === "address" && (
               <div>
@@ -430,7 +430,7 @@ const ProfilePage = () => {
                 />
               </div>
             )} */}
-          </div>
+{/*           </div>
 
           <div className="mt-6 text-right">
             <button
@@ -440,7 +440,7 @@ const ProfilePage = () => {
               Update Profile
             </button>
           </div>
-        </div>
+        </div> */}
       </main>
       <ToastContainer position="top-right" autoClose={3000} />
     </div>

@@ -30,12 +30,12 @@ export default function About() {
             About Us
           </h2>
 
-          <p className="text-gray-700 text-lg leading-relaxed tracking-wide font-medium mb-4">
+{/*           <p className="text-gray-700 text-lg leading-relaxed tracking-wide font-medium mb-4">
             At <span className="font-semibold text-indigo-600">ExploreMore</span>, we redefine how you travel.
             Whether you're planning a solo escape, a family adventure, or a destination wedding,
             we make it personal. From immersive city tours with local guides to custom travel packages
             and AR-powered historical journeys — your travel dreams come to life with us.
-          </p>
+          </p> */}
 
           {/* New NAVAD section */}
           <div className="mt-6 space-y-4 text-gray-800 text-base leading-relaxed font-medium">

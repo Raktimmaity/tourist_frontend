@@ -78,10 +78,10 @@ export default function Hero() {
           ) : (
             <>
               <h1 className="text-4xl md:text-6xl font-bold mb-6 animate-gradient-text">
-                Explore the World with Us
+                Travel Deeper. Live the Culture
               </h1>
               <p className="text-lg md:text-xl text-gray-200 animate-fade-in-delayed mb-8 max-w-2xl mx-auto">
-                Discover unforgettable destinations, local guides, and tailor-made journeys to suit your dream adventures
+                Your Personal Gateway to Authentic Destinations, Local Guides & Cultural Immersion
               </p>
               <NavLink
                 to="/tours"
@@ -91,7 +91,7 @@ export default function Hero() {
                   animate-fade-in-delayed"
                 // onClick={() => alert("CTA button clicked!")}
               >
-                Start Your Journey
+                Explore Tours
               </NavLink>
             </>
           )}

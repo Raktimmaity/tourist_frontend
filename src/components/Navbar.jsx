@@ -185,7 +185,7 @@ export default function Navbar() {
                   to="/"
                   className="hover:text-yellow-300 transition-colors duration-300"
                 >
-                  ExploreMore
+                  NAVAD
                 </NavLink>
               </h1>
 
